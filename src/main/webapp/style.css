@@ -29,3 +29,9 @@ label {
 	border-radius: 10px;
 	width: 50%;
 }
+
+.submit:hover{
+	background: navy;
+	color: white;
+	transition: 0.2s;
+}
