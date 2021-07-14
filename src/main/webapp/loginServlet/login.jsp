@@ -25,7 +25,7 @@ response.addCookie(c3);
 	String user = request.getParameter("user");
 	String pass = request.getParameter("pass");
 	Cookie[] cookies = request.getCookies();
-	String name = "", value = "", uname = "", upass = "";
+	String name = "", value = "", uname = "", upass = "", date = "";
 	boolean isValid = false;
 	%>
 	<%
@@ -34,7 +34,9 @@ response.addCookie(c3);
 		value = cookies[i].getValue();
 		if(name.equals(user) && value.equals(pass)){
 			isValid = true;
-			break;
+		}
+		if(name.equals(user)){
+			date = value;
 		}
 	}
 
@@ -43,7 +45,7 @@ response.addCookie(c3);
 		upass = pass;
 	}
 	
-	session.setAttribute(uname, upass);
+	session.setAttribute(uname, date);
 	response.sendRedirect("../viewAccounts.jsp");
 	
 	%>

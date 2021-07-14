@@ -10,6 +10,11 @@
 </head>
 <body>
 	<%
+	String x = session.getAttributeNames().nextElement();
+	Cookie c1 = new Cookie(x, String.valueOf(session.getLastAccessedTime()));
+	response.addCookie(c1);
+	%>
+	<%
 	if (session != null) {
 		session.invalidate();
 	}

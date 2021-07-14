@@ -16,10 +16,12 @@
 
 
 	<%
-	String x = "";
-	Enumeration creds = session.getAttributeNames();
-	while (creds.hasMoreElements())
+	String x = "", y = "";
+	Enumeration<String> creds = session.getAttributeNames();
+	while (creds.hasMoreElements()){
 		x = (String) creds.nextElement();
+		y = (String) session.getAttribute(x);
+	}
 	%>
 
 	<%
@@ -48,6 +50,7 @@
 		
 		%>
 		<h2>Welcome <%=x%>!</h2>
+		<h4>Last Accessed Time:	<%= new Date(Long.valueOf(y)) %></h4>
 		<table>
 		<tr>
 			<th>Account Number</th>
