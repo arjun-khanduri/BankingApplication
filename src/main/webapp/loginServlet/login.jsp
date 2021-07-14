@@ -1,0 +1,48 @@
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%
+String user1 = "Laura", pass1 = "123";
+String user2 = "Jenna", pass2 = "456";
+String user3 = "Max", pass3 = "789";
+Cookie c1 = new Cookie(user1, pass1);
+Cookie c2 = new Cookie(user2, pass2);
+Cookie c3 = new Cookie(user3, pass3);
+response.addCookie(c1);
+response.addCookie(c2);
+response.addCookie(c3);
+%>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login</title>
+</head>
+<body>
+	<%
+	String user = request.getParameter("user");
+	String pass = request.getParameter("pass");
+	Cookie[] cookies = request.getCookies();
+	String name = "", value = "";
+	boolean isValid = false;
+	%>
+	<%
+	for (int i = 0; i < cookies.length; i++) {
+		name = cookies[i].getName();
+		value = cookies[i].getValue();
+		if(name.equals(user) && value.equals(pass)){
+			isValid = true;
+			break;
+		}
+	}
+	
+	if(isValid)
+		out.print("<h1>Welcome " + name + "!</h1>");
+	else
+		out.print("<h1>Incorrect Username or Password</h1>");
+	
+	%>
+</body>
+</html>
