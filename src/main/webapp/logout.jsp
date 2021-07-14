@@ -10,7 +10,11 @@
 </head>
 <body>
 	<%
-	String x = session.getAttributeNames().nextElement();
+	Enumeration creds = session.getAttributeNames();
+	String x = "";
+	while(creds.hasMoreElements()){
+		x = (String)creds.nextElement();
+	}
 	Cookie c1 = new Cookie(x, String.valueOf(session.getLastAccessedTime()));
 	response.addCookie(c1);
 	%>

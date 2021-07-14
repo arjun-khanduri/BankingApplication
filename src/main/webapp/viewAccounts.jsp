@@ -17,7 +17,7 @@
 
 	<%
 	String x = "", y = "";
-	Enumeration<String> creds = session.getAttributeNames();
+	Enumeration creds = session.getAttributeNames();
 	while (creds.hasMoreElements()){
 		x = (String) creds.nextElement();
 		y = (String) session.getAttribute(x);
