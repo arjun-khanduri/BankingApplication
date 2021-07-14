@@ -25,7 +25,7 @@ response.addCookie(c3);
 	String user = request.getParameter("user");
 	String pass = request.getParameter("pass");
 	Cookie[] cookies = request.getCookies();
-	String name = "", value = "";
+	String name = "", value = "", uname = "", upass = "";
 	boolean isValid = false;
 	%>
 	<%
@@ -37,11 +37,14 @@ response.addCookie(c3);
 			break;
 		}
 	}
+
+	if(isValid){
+		uname = user;
+		upass = pass;
+	}
 	
-	if(isValid)
-		out.print("<h1>Welcome " + name + "!</h1>");
-	else
-		out.print("<h1>Incorrect Username or Password</h1>");
+	session.setAttribute(uname, upass);
+	response.sendRedirect("../viewAccounts.jsp");
 	
 	%>
 </body>
