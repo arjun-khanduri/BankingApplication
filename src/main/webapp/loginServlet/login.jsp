@@ -29,25 +29,31 @@ response.addCookie(c3);
 	boolean isValid = false;
 	%>
 	<%
-	for (int i = 0; i < cookies.length; i++) {
-		name = cookies[i].getName();
-		value = cookies[i].getValue();
-		if(name.equals(user) && value.equals(pass)){
-			isValid = true;
+	if (cookies != null) {
+		for (int i = 0; i < cookies.length; i++) {
+			name = cookies[i].getName();
+			value = cookies[i].getValue();
+			if (name.equals(user) && value.equals(pass)) {
+				isValid = true;
+			}
+			if (name.equals(user)) {
+				date = value;
+			}
 		}
-		if(name.equals(user)){
-			date = value;
-		}
-	}
 
-	if(isValid){
-		uname = user;
-		upass = pass;
+		if (isValid) {
+			uname = user;
+			upass = pass;
+
+			session.setAttribute(uname, date);
+			response.sendRedirect("../viewAccounts.jsp");
+		}
+		else{
+			response.sendRedirect("../Login.html");
+		}
 	}
-	
-	session.setAttribute(uname, date);
-	response.sendRedirect("../viewAccounts.jsp");
-	
+	else
+		response.sendRedirect("login.jsp");
 	%>
 </body>
 </html>

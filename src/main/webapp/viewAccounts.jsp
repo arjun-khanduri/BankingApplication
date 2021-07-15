@@ -40,17 +40,11 @@
 		map2.put("400500200", 94200.2);
 		map2.put("500500300", 8000456.65);
 		
-		String[] accounts = null;
-		
-		for(Map.Entry<String, String[]> m : map1.entrySet()){
-			if(x.equals(m.getKey())){
-				accounts = m.getValue();
-			}
-		}
+		String[] accounts = map1.get(x);
 		
 		%>
 		<h2>Welcome <%=x%>!</h2>
-		<h4>Last Accessed Time:	<%= new Date(Long.valueOf(y)) %></h4>
+		<h4>Last Access Date:	<%= Long.valueOf(y) < 1000 ? "None" : new Date(Long.valueOf(y)) %></h4>
 		<table>
 		<tr>
 			<th>Account Number</th>
